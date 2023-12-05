@@ -36,14 +36,21 @@
   "policies": [],
   "queues": [
     {
-      "name": "smallConverterQueue",
+      "name": "smallImageConverterQueue",
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
       "arguments": {}
     },
     {
-      "name": "bigConverterQueue",
+      "name": "jp2ConverterQueue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "pdfConverterQueue",
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
@@ -52,7 +59,16 @@
   ],
   "exchanges": [
     {
-      "name": "converterExchange",
+      "name": "imageConverterExchange",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+     {
+      "name": "pdfConverterExchange",
       "vhost": "/",
       "type": "fanout",
       "durable": true,
@@ -63,17 +79,25 @@
   ],
   "bindings": [
     {
-      "source": "converterExchange",
+      "source": "imageConverterExchange",
       "vhost": "/",
-      "destination": "bigConverterQueue",
+      "destination": "jp2ConverterQueue",
       "destination_type": "queue",
       "routing_key": "",
       "arguments": {}
     },
     {
-      "source": "converterExchange",
+      "source": "imageConverterExchange",
       "vhost": "/",
-      "destination": "smallConverterQueue",
+      "destination": "smallImageConverterQueue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "pdfConverterExchange",
+      "vhost": "/",
+      "destination": "pdfConverterQueue",
       "destination_type": "queue",
       "routing_key": "",
       "arguments": {}
