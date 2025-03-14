@@ -62,6 +62,13 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {}
+    },
+    {
+      "name": "userChangedQueue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
     }
   ],
   "exchanges": [
@@ -86,7 +93,7 @@
     {
       "name": "dataChangedExchange",
       "vhost": "/",
-      "type": "fanout",
+      "type": "topic",
       "durable": true,
       "auto_delete": false,
       "internal": false,
@@ -123,7 +130,31 @@
       "vhost": "/",
       "destination": "dataChangedQueue",
       "destination_type": "queue",
-      "routing_key": "",
+      "routing_key": "*",
+      "arguments": {}
+    },
+    {
+      "source": "dataChangedExchange",
+      "vhost": "/",
+      "destination": "userChangedQueue",
+      "destination_type": "queue",
+      "routing_key": "user",
+      "arguments": {}
+    },
+    {
+      "source": "dataChangedExchange",
+      "vhost": "/",
+      "destination": "userChangedQueue",
+      "destination_type": "queue",
+      "routing_key": "permissionRole",
+      "arguments": {}
+    },
+    {
+      "source": "dataChangedExchange",
+      "vhost": "/",
+      "destination": "userChangedQueue",
+      "destination_type": "queue",
+      "routing_key": "permissionRule",
       "arguments": {}
     }
   ]
