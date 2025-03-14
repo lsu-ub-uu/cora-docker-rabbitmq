@@ -55,6 +55,13 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {}
+    },
+    {
+      "name": "dataChangedQueue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
     }
   ],
   "exchanges": [
@@ -67,8 +74,17 @@
       "internal": false,
       "arguments": {}
     },
-     {
+    {
       "name": "pdfConverterExchange",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "dataChangedExchange",
       "vhost": "/",
       "type": "fanout",
       "durable": true,
@@ -98,6 +114,14 @@
       "source": "pdfConverterExchange",
       "vhost": "/",
       "destination": "pdfConverterQueue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "dataChangedExchange",
+      "vhost": "/",
+      "destination": "dataChangedQueue",
       "destination_type": "queue",
       "routing_key": "",
       "arguments": {}
