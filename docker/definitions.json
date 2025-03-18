@@ -55,20 +55,6 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {}
-    },
-    {
-      "name": "dataChangedQueue",
-      "vhost": "/",
-      "durable": true,
-      "auto_delete": false,
-      "arguments": {}
-    },
-    {
-      "name": "userChangedQueue",
-      "vhost": "/",
-      "durable": true,
-      "auto_delete": false,
-      "arguments": {}
     }
   ],
   "exchanges": [
@@ -123,38 +109,6 @@
       "destination": "pdfConverterQueue",
       "destination_type": "queue",
       "routing_key": "",
-      "arguments": {}
-    },
-    {
-      "source": "dataChangedExchange",
-      "vhost": "/",
-      "destination": "dataChangedQueue",
-      "destination_type": "queue",
-      "routing_key": "*",
-      "arguments": {}
-    },
-    {
-      "source": "dataChangedExchange",
-      "vhost": "/",
-      "destination": "userChangedQueue",
-      "destination_type": "queue",
-      "routing_key": "user",
-      "arguments": {}
-    },
-    {
-      "source": "dataChangedExchange",
-      "vhost": "/",
-      "destination": "userChangedQueue",
-      "destination_type": "queue",
-      "routing_key": "permissionRole",
-      "arguments": {}
-    },
-    {
-      "source": "dataChangedExchange",
-      "vhost": "/",
-      "destination": "userChangedQueue",
-      "destination_type": "queue",
-      "routing_key": "permissionRule",
       "arguments": {}
     }
   ]
