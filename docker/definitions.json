@@ -68,6 +68,24 @@
       "arguments": {}
     },
     {
+      "name": "smallImageConverterExchange",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "jp2ConverterExchange",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
       "name": "pdfConverterExchange",
       "vhost": "/",
       "type": "fanout",
@@ -99,6 +117,22 @@
       "source": "imageConverterExchange",
       "vhost": "/",
       "destination": "smallImageConverterQueue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "smallImageConverterExchange",
+      "vhost": "/",
+      "destination": "smallImageConverterQueue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "jp2ConverterExchange",
+      "vhost": "/",
+      "destination": "jp2ConverterQueue",
       "destination_type": "queue",
       "routing_key": "",
       "arguments": {}
