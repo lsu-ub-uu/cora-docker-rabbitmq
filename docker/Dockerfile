@@ -1,4 +1,4 @@
-FROM rabbitmq:4.1.4-management
+FROM rabbitmq:4.4.0-management
 
 ADD rabbitmq.conf /etc/rabbitmq/rabbitmq.conf
 ADD definitions.json /etc/rabbitmq/definitions.json
